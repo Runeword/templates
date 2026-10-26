@@ -34,6 +34,25 @@
         rust.path = ./rust;
         rust.description = "rust";
         rust.welcomeText = "rust";
+
+        base.path = ./base;
+        base.description = "Nix flake repository: lefthook dev shell and a CI check job";
+        base.welcomeText = ''
+          Next:
+
+          - `nix flake init -t github:Runeword/templates#dependabot`
+          - set `description` in flake.nix
+          - commit, then `direnv allow` and `nix-direnv-reload`: the dev shell
+            writes lefthook-generated.yml and installs the hooks; commit it
+          - add the repository to `local.repos` in Runeword/admin
+        '';
+
+        dependabot.path = ./dependabot;
+        dependabot.description = "Dependabot for flake inputs and GitHub Actions: weekly, 7-day cooldown";
+        dependabot.welcomeText = ''
+          Commit .github/dependabot.yml. In a repository without workflows,
+          drop its github-actions entry: Dependabot fails on it every week.
+        '';
       };
     };
 }
